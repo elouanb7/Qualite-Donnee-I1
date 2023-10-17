@@ -14,7 +14,7 @@
     "route_short_name": "1B",
     "route_long_name": "François Mitterrand - Beaujoire / Ranzay",
     "route_desc": "",
-    "route_type": 3,
+    "route_type": 0,
     "route_color": "007A45",
     "route_text_color": "FFFFFF",
     "route_sort_order": 2
@@ -34,7 +34,7 @@
     "route_short_name": "2B",
     "route_long_name": "Orvault Grand Val - Gare de Pont Rousseau",
     "route_desc": "",
-    "route_type": 3,
+    "route_type": 0,
     "route_color": "E53138",
     "route_text_color": "FFFFFF",
     "route_sort_order": 4
