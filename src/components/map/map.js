@@ -6,7 +6,7 @@ import OSM from 'ol/source/OSM'
 import { fromLonLat } from 'ol/proj'
 import createBusLayer from './bus'
 import { Overlay } from 'ol'
-import { parseStops } from '../utils/parser'
+import { parseStopTimes } from '../utils/parser'
 
 const container = document.getElementById('popup')
 const content = document.getElementById('popup-content')
@@ -65,11 +65,17 @@ export default async function createMap() {
     )
 
     if (features.length > 0) {
-      let name = features[0].values_.name
-      content.innerHTML = '<p> Arrêt : <code>' + name + '</code> </p>'
+      let feature = features[0].values_
+      content.innerHTML =
+        '<p> Arrêt : <code>' +
+        feature.name +
+        '</code><br>Accès handicapé : <code>' +
+        (feature.wheelchair === 1 ? 'Oui' : 'Non') +
+        '</code></p>'
       overlay.setPosition(event.coordinate)
     }
   })
 
   map.addLayer(await createBusLayer())
+  await parseStopTimes()
 }

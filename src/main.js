@@ -10,11 +10,6 @@ import SvgIcon from '@/components/icons/SvgIcon.vue'
 const app = createApp(App)
 
 app.use(createPinia())
-/*app.config.globalProperties.$axios = axios
-
-app.config.globalProperties.$store = {
-    rdv: useRdvStore(),
-}*/
 
 app.use(router)
 app.component('SvgIcon', SvgIcon)

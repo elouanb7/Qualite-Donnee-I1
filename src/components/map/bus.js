@@ -26,6 +26,7 @@ export default async function createBusLayer() {
       )
       feature.set('name', point.name)
       feature.set('id', point.id)
+      feature.set('wheelchair', point.wheelchair)
       return feature
     })
   })
