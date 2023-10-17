@@ -31,6 +31,9 @@ export default async function createBusLayer() {
   })
 
   return new VectorLayer({
+    properties: {
+      name: 'busLayer'
+    },
     source: vectorSource,
     minZoom: 16
   })
