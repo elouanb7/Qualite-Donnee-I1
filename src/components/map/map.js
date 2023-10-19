@@ -6,7 +6,8 @@ import OSM from 'ol/source/OSM'
 import { fromLonLat } from 'ol/proj'
 import createBusLayer from './bus'
 import { Overlay } from 'ol'
-import { parseStopTimes } from '../utils/parser'
+import createShapesLayer from './shapes'
+import { XYZ } from 'ol/source'
 
 const container = document.getElementById('popup')
 const content = document.getElementById('popup-content')
@@ -34,7 +35,9 @@ export default async function createMap() {
     target: 'map',
     layers: [
       new TileLayer({
-        source: new OSM()
+        source: new XYZ({
+          url: 'https://tile.jawg.io/jawg-sunny/{z}/{x}/{y}.png?access-token=hUi4K4fnSi0gIkMiVUo2N9voob4eg23D22SexW1nIdM73fBSA7wmMNg8gBHnLEAt'
+        })
       })
     ],
     view: new View({
@@ -77,5 +80,5 @@ export default async function createMap() {
   })
 
   map.addLayer(await createBusLayer())
-  await parseStopTimes()
+  map.addLayer(await createShapesLayer())
 }
