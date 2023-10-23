@@ -35,9 +35,7 @@ export default async function createMap() {
     target: 'map',
     layers: [
       new TileLayer({
-        source: new XYZ({
-          url: 'https://tile.jawg.io/jawg-sunny/{z}/{x}/{y}.png?access-token=hUi4K4fnSi0gIkMiVUo2N9voob4eg23D22SexW1nIdM73fBSA7wmMNg8gBHnLEAt'
-        })
+        source: new OSM()
       })
     ],
     view: new View({
@@ -74,6 +72,9 @@ export default async function createMap() {
         feature.name +
         '</code><br>Accès handicapé : <code>' +
         (feature.wheelchair === 1 ? 'Oui' : 'Non') +
+        '</code><br>Lignes : <br><code>' +
+        feature.routes[0].route_name +
+        feature.routes[0].route_color +
         '</code></p>'
       overlay.setPosition(event.coordinate)
     }
