@@ -44,7 +44,6 @@ export default async function createShapesLayer() {
           })
         })
       )
-      console.log(feature)
       return feature
     })
   })
