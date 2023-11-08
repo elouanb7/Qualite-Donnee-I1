@@ -75,7 +75,10 @@ async function associateShapesStops(shapesData, stopsData) {
   const routes = await parseRoutes()
 
   const routesMap = new Map(
-    routes.map((route) => [route.route_short_name.toString(), route.route_color])
+    routes.map((route) => [
+      route.route_short_name.toString(),
+      [route.route_color, route.route_text_color]
+    ])
   )
 
   shapesData.forEach((shape) => {
@@ -85,16 +88,24 @@ async function associateShapesStops(shapesData, stopsData) {
     }
     if (routesMap.has(shape.shape_id.toString().slice(0, -4))) {
       const shapeId = shape.shape_id.toString().slice(0, -4)
-      const routeColor = routesMap.get(shapeId)
-      const pair = { route_name: shapeId, route_color: routeColor }
+      const routeColors = routesMap.get(shapeId)
+      const pair = {
+        route_name: shapeId,
+        route_color: routeColors[0],
+        route_text_color: routeColors[1]
+      }
       // Add the pair to the shape_ids array if it's not already included
       if (!shapeIdMap.get(key).some(({ route }) => route === shapeId)) {
         shapeIdMap.get(key).push(pair)
       }
     } else if (routesMap.has(shape.shape_id.toString().slice(0, -5))) {
       const shapeId = shape.shape_id.toString().slice(0, -5)
-      const routeColor = routesMap.get(shapeId)
-      const pair = { route_name: shapeId, route_color: routeColor }
+      const routeColors = routesMap.get(shapeId)
+      const pair = {
+        route_name: shapeId,
+        route_color: routeColors[0],
+        route_text_color: routeColors[1]
+      }
       // Add the pair to the shape_ids array if it's not already included
       if (!shapeIdMap.get(key).some(({ route }) => route === shapeId)) {
         shapeIdMap.get(key).push(pair)
