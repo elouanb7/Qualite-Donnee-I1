@@ -76,7 +76,7 @@ export default async function createMap() {
           item.route_name +
           '</div>'
       })
-
+      
       content.innerHTML =
         '<p> Arrêt : <code>' +
         feature.name +
