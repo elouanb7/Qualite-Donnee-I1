@@ -67,6 +67,7 @@ export default async function createMap() {
 
     if (features.length > 0) {
       let feature = features[0].values_
+      console.log(feature)
       content.innerHTML =
         '<p> Arrêt : <code>' +
         feature.name +
