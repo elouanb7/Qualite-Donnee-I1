@@ -7,7 +7,6 @@ import { fromLonLat } from 'ol/proj'
 import createBusLayer from './bus'
 import { Overlay } from 'ol'
 import createShapesLayer from './shapes'
-import { XYZ } from 'ol/source'
 
 const container = document.getElementById('popup')
 const content = document.getElementById('popup-content')
@@ -67,17 +66,29 @@ export default async function createMap() {
 
     if (features.length > 0) {
       let feature = features[0].values_
-      console.log(feature)
+      let divContent = ''
+
+      feature.routes.forEach(function (item) {
+        divContent +=
+          "<div style='margin: 0 2px; width: 40px; text-align: center; padding: 0 10px; color: #fff; background-color: #" +
+          item.route_color +
+          "'>" +
+          item.route_name +
+          '</div>'
+      })
+      
       content.innerHTML =
         '<p> Arrêt : <code>' +
         feature.name +
         '</code><br>Accès handicapé : <code>' +
         (feature.wheelchair === 1 ? 'Oui' : 'Non') +
-        '</code><br>Lignes : <br><code>' +
-        feature.routes[0].route_name +
-        feature.routes[0].route_color +
-        '</code></p>'
+        '</code><br>Lignes : <br>' +
+        '<div style="max-width: 240px">' +
+        '<div id="linesDiv" style="margin-top: 10px; display: flex; flex-wrap: wrap; gap: 15px; justify-content: flex-start;"></div>' +
+        '</div></p>'
+
       overlay.setPosition(event.coordinate)
+      document.getElementById('linesDiv').insertAdjacentHTML('beforeend', divContent)
     }
   })
 
