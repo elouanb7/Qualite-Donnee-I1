@@ -67,16 +67,18 @@ export default async function createMap() {
     if (features.length > 0) {
       let feature = features[0].values_
       let divContent = ''
-
+      console.log(feature)
       feature.routes.forEach(function (item) {
         divContent +=
-          "<div style='margin: 0 2px; width: 40px; text-align: center; padding: 0 10px; color: #fff; background-color: #" +
+          "<div style='font-weight: bold; margin: 0 2px; width: 40px; text-align: center; padding: 0 10px; color: #" +
+          item.route_text_color +
+          '; background-color: #' +
           item.route_color +
           "'>" +
           item.route_name +
           '</div>'
       })
-      
+
       content.innerHTML =
         '<p> Arrêt : <code>' +
         feature.name +
