@@ -7,7 +7,6 @@ import { Icon, Style } from 'ol/style'
 import { parseStops } from '../utils/parser'
 export default async function createBusLayer() {
   const points = await parseStops()
-
   const vectorSource = new VectorSource({
     features: points.map((point) => {
       const feature = new Feature({
@@ -24,13 +23,18 @@ export default async function createBusLayer() {
           })
         })
       )
+      feature.set('routes', point.routes)
       feature.set('name', point.name)
       feature.set('id', point.id)
+      feature.set('wheelchair', point.wheelchair)
       return feature
     })
   })
 
   return new VectorLayer({
+    properties: {
+      name: 'busLayer'
+    },
     source: vectorSource,
     minZoom: 16
   })
