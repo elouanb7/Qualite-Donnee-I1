@@ -7,13 +7,18 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: () => import('../views/HomeView.vue'),
-      meta: { title: "Carte Interactive Tan" },
+      meta: { title: 'Carte Interactive Tan' }
     },
+    {
+      path: '/about',
+      name: 'about',
+      component: () => import('../views/AboutView.vue')
+    }
   ]
 })
 
 router.beforeEach((to, from, next) => {
-  document.title = to.meta.title;
-  next();
-});
+  document.title = to.meta.title
+  next()
+})
 export default router

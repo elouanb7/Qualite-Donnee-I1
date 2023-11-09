@@ -20,3 +20,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+#map {
+  height: 700px;
+  width: 95%;
+  margin: auto;
+}
+</style>
