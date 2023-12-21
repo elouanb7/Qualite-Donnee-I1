@@ -43,7 +43,7 @@ export default async function createMap() {
     })
   })
 
-  map.on('click', function (event) {
+  map.on('pointermove', function (event) {
     let features = []
     let pixel = map.getPixelFromCoordinate(event.coordinate)
     map.forEachFeatureAtPixel(
@@ -67,7 +67,6 @@ export default async function createMap() {
     if (features.length > 0) {
       let feature = features[0].values_
       let divContent = ''
-      console.log(feature)
       feature.routes.forEach(function (item) {
         divContent +=
           "<div style='font-weight: bold; margin: 0 2px; width: 40px; text-align: center; padding: 0 10px; color: #" +
